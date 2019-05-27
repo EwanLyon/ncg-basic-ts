@@ -1,0 +1,44 @@
+{
+  "name": "BUNDLENAME",
+  "version": "1.0.0",
+  "description": "A bare layout for TS",
+  "files": [
+    "dashboard",
+    "graphics",
+    "extension.js",
+    "extension"
+  ],
+  "keywords": [
+    "",
+    "nodecg-bundle"
+  ],
+  "nodecg": {
+    "compatibleRange": "^1.4.0",
+    "transformBareModuleSpecifiers": true,
+    "dashboardPanels": [
+      {
+        "name": "panel",
+        "title": "Panel",
+        "width": 2,
+        "file": "panel.html",
+        "headerColor": "#0054b9"
+      }
+    ]
+  },
+  "dependencies": {
+    "@material/mwc-button": "^0.5.0"
+  },
+  "scripts": {
+    "build": "npm run schema-types && npm run build:extension && npm run build:browser",
+    "build:extension": "trash dist && tsc -b tsconfig.node.json",
+    "build:browser": "tsc -p tsconfig.browser.json",
+    "watch:extension": "tsc -b tsconfig.node.json --watch",
+    "watch:browser": "tsc -p tsconfig.browser.json --watch",
+    "schema-types": "trash src/types/schemas && nodecg schema-types",
+    "start": "node ../.. --bundlesEnabled=BUNDLENAME"
+  },
+  "devDependencies": {
+    "trash-cli": "^2.0.0",
+    "typescript": "^3.4.5"
+  }
+}
